@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.st.novatech.librarianapp.entity.Branch;
 
-
 /**
  * A Data Access Object class to access the table of library branches.
+ *
+ * @author Salem Ozaki
+ * @author Jonathan Lovelace
  */
 @Repository
 public interface LibraryBranchDao extends JpaRepository<Branch, Integer> {

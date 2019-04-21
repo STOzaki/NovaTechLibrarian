@@ -1,16 +1,17 @@
 package com.st.novatech.librarianapp.service;
 
 import java.util.List;
-import java.util.Map;
 
+import com.st.novatech.librarianapp.exception.TransactionException;
 import com.st.novatech.librarianapp.entity.Book;
 import com.st.novatech.librarianapp.entity.Branch;
-import com.st.novatech.librarianapp.exception.TransactionException;
+import com.st.novatech.librarianapp.entity.BranchCopies;
 
 /**
  * A service interface to ease the creation of a UI for librarians.
- * @author Al-amine AHMED MOUSSA
  *
+ * @author Salem Ozaki
+ * @author Jonathan Lovelace
  */
 public interface LibrarianService extends Service {
 	/**
@@ -34,32 +35,28 @@ public interface LibrarianService extends Service {
 	List<Book> getAllBooks() throws TransactionException;
 
 	/**
-	 * Get all counts of copies that branches have, as a mapping from branches to
-	 * book-to-copy mappings.
-	 *
-	 * <p>TODO: Would this be more useful with Branch and Book switched in its return
-	 * type?
+	 * Get all counts of copies that branches have.
 	 *
 	 * @return the collection of all copy counts in the database
 	 */
-	Map<Branch, Map<Book, Integer>> getAllCopies() throws TransactionException;
+	List<BranchCopies> getAllCopies() throws TransactionException;
 
 	/**
 	 * Get a branch in the database.
-	 * 
+	 *
 	 * @return a branch in the database
 	 */
 	Branch getbranch(int branchId) throws TransactionException;
 
 	/**
 	 * Get a book in the database.
-	 * 
+	 *
 	 * @return a book in the database
 	 */
 	Book getBook(int bookId) throws TransactionException;
 	/**
 	 * Get the number of copies of a given book on a given branch in the database.
-	 * 
+	 *
 	 * @return the number of copies
 	 */
 	int getCopies(Book book,Branch branch) throws TransactionException;

@@ -11,6 +11,9 @@ import com.st.novatech.librarianapp.entity.Publisher;
 
 /**
  * A Data Access Object interface to access the table of books.
+ *
+ * @author Salem Ozaki
+ * @author Jonathan Lovelace
  */
 @Repository
 public interface BookDao extends JpaRepository<Book, Integer> {

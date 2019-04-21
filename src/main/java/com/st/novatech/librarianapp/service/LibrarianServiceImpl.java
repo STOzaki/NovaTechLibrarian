@@ -1,7 +1,6 @@
 package com.st.novatech.librarianapp.service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,18 +13,17 @@ import org.springframework.transaction.TransactionStatus;
 import com.st.novatech.librarianapp.dao.BookDao;
 import com.st.novatech.librarianapp.dao.CopiesDao;
 import com.st.novatech.librarianapp.dao.LibraryBranchDao;
-import com.st.novatech.librarianapp.entity.Book;
-import com.st.novatech.librarianapp.entity.Branch;
 import com.st.novatech.librarianapp.exception.RetrieveException;
 import com.st.novatech.librarianapp.exception.TransactionException;
 import com.st.novatech.librarianapp.exception.UnknownSQLException;
 import com.st.novatech.librarianapp.exception.UpdateException;
-
+import com.st.novatech.librarianapp.entity.Book;
+import com.st.novatech.librarianapp.entity.Branch;
+import com.st.novatech.librarianapp.entity.BranchCopies;
 
 /**
  * The "service" class to help UIs for librarians.
  *
- * @author Al-amine AHMED MOUSSA
  * @author Jonathan Lovelace
  */
 @Service
@@ -52,7 +50,7 @@ public final class LibrarianServiceImpl implements LibrarianService {
 	/**
 	 * The currently-active transaction, or null if not in a transaction.
 	 */
-	private TransactionStatus transaction;
+	private volatile TransactionStatus transaction;
 	/**
 	 * The transaction manager provided by Spring.
 	 */
@@ -112,7 +110,7 @@ public final class LibrarianServiceImpl implements LibrarianService {
 	}
 
 	@Override
-	public Map<Branch, Map<Book, Integer>> getAllCopies() throws TransactionException {
+	public List<BranchCopies> getAllCopies() throws TransactionException {
 		try {
 			return copiesDao.getAllCopies();
 		} catch (final DataAccessException except) {
@@ -170,9 +168,7 @@ public final class LibrarianServiceImpl implements LibrarianService {
 		return pending;
 	}
 	@Override
-	public int getCopies(Book book,Branch branch) throws TransactionException{
-		int foundNumberOfCopies = 0;
-		foundNumberOfCopies = copiesDao.getCopies(branch, book);
-		return  foundNumberOfCopies;
+	public int getCopies(final Book book, final Branch branch) throws TransactionException {
+		return copiesDao.getCopies(branch, book);
 	}
 }

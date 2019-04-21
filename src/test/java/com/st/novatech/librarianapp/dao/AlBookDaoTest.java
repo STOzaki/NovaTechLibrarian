@@ -44,7 +44,7 @@ public class AlBookDaoTest {
 		final Author a = new Author(300, "testname");
 		final Publisher p = new Publisher(300, "testname", "testaddress", "testphone");
 
-		final Book book = bookDao.create(str1, a, p);
+		final Book book = bookDao.create(str1, null, null);
 		assertEquals(str1, book.getTitle(), "created book has expected title");
 	}
 
@@ -58,7 +58,7 @@ public class AlBookDaoTest {
 		final Author a = new Author(300, "testname");
 		final Publisher p = new Publisher(300, "testname", "testaddress", "testphone");
 		
-		final Book b = bookDao.create("50 down", a, p);
+		final Book b = bookDao.create("50 down", null, null);
 
 		assertEquals(b.getTitle(), bookDao.findById(b.getId()).get().getTitle(),
 				"retrieved book has expected title");

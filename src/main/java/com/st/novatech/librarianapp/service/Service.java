@@ -2,13 +2,14 @@ package com.st.novatech.librarianapp.service;
 
 import java.util.List;
 
-import com.st.novatech.librarianapp.entity.Branch;
 import com.st.novatech.librarianapp.exception.TransactionException;
-
+import com.st.novatech.librarianapp.entity.Branch;
 
 /**
  * A base interface that all service interfaces extend.
- * @author Al-amine AHMED MOUSSA
+ *
+ * @author Salem Ozaki
+ * @author Jonathan Lovelace
  */
 public interface Service {
 	/**
