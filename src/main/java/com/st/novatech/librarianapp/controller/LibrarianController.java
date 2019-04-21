@@ -44,7 +44,7 @@ public final class LibrarianController {
 		return service.getAllBooks();
 	}
 	
-	@RequestMapping({"/branch/{branchId}", "/branch/{branchId}/"})
+	@RequestMapping({"/branches/{branchId}", "/branches/{branchId}/"})
 	public ResponseEntity<Branch>  getBranch(@PathVariable("branchId") final int branchId)
 			throws TransactionException {
 		final Branch branch = service.getbranch(branchId);
@@ -58,7 +58,7 @@ public final class LibrarianController {
 	}
 	
 	
-	@RequestMapping({"/book/{bookId}", "/book/{bookId}/"})
+	@RequestMapping({"/books/{bookId}", "/books/{bookId}/"})
 	public ResponseEntity<Book> getBook(@PathVariable("bookId") final int bookId)
 			throws TransactionException {
 		final Book book = service.getBook(bookId);
@@ -69,7 +69,7 @@ public final class LibrarianController {
 		}
 	}
 
-	@RequestMapping(path = { "/branch/{branchId}", "/branch/{branchId}/" }, method = RequestMethod.PUT)
+	@RequestMapping(path = { "/branches/{branchId}", "/branches/{branchId}/" }, method = RequestMethod.PUT)
 	public Branch updateBranch(@PathVariable("branchId") final int branchId,@RequestBody Branch input)
 			throws TransactionException {
 		final Branch branch = service.getbranch(branchId);
@@ -87,8 +87,8 @@ public final class LibrarianController {
 	}
 
 	
-	@RequestMapping(path = { "/branch/{branchId}/book/{bookId}",
-			"/branch/{branchId}/book/{bookId}/" }, method = RequestMethod.PUT)
+	@RequestMapping(path = { "/branches/{branchId}/books/{bookId}",
+			"/branches/{branchId}/books/{bookId}/" }, method = RequestMethod.PUT)
 	public ResponseEntity<BranchCopies> setBranchCopies(@PathVariable("branchId") int branchId,
 			@PathVariable("bookId") int bookId, @RequestParam("noOfCopies") int copies)
 
@@ -116,8 +116,8 @@ public final class LibrarianController {
 
 	}
 	
-	@RequestMapping(path = { "/branch/{branchId}/book/{bookId}",
-	                          "/branch/{branchId}/book/{bookId}" }, method = RequestMethod.GET)
+	@RequestMapping(path = { "/branches/{branchId}/books/{bookId}",
+	                          "/branches/{branchId}/books/{bookId}" }, method = RequestMethod.GET)
 	public ResponseEntity<BranchCopies> getBranchCopies(@PathVariable("branchId") int branchId,
 			        @PathVariable("bookId") int bookId) throws TransactionException {
 		
